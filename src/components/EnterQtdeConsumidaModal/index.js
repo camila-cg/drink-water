@@ -8,16 +8,23 @@ import {
     View
 } from "react-native";
 
+import strings from "../../constants/strings";
+import CommonButton from "../CommonButton";
+import MyTextInput from "../MyTextInput";
+
 const EnterQtdeConsumidaModal = (props) => {
-    const [modalVisible, setModalVisible] = useState(false);
+    const [volumeConsumido, setVolumeConsumido] = useState(0);
+
+    const setConsumo = () => {
+        props.onInput(volumeConsumido);
+    }
 
     return (
         <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
                 transparent={true}
-                // visible={props.show}
-                visible={modalVisible}
+                visible={props.show}
                 onRequestClose={() => {
                     Alert.alert("Modal has been closed.");
                 }}
@@ -26,7 +33,13 @@ const EnterQtdeConsumidaModal = (props) => {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>MODAL</Text>
 
-                        <TouchableHighlight
+                        <View style={styles.inputView}>
+                            <MyTextInput onChange={(text) => setVolumeConsumido(parseInt(text))}></MyTextInput>
+                            <CommonButton title={strings.OK} style={styles.okButton} onPress={setConsumo}
+                            />
+                        </View>
+
+                        {/* <TouchableHighlight
                             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                             onPress={() => {
                                 // props.show = false;
@@ -34,23 +47,25 @@ const EnterQtdeConsumidaModal = (props) => {
                             }}
                         >
                             <Text style={styles.textStyle}>Hide Modal</Text>
-                        </TouchableHighlight>
+                        </TouchableHighlight> */}
                     </View>
                 </View>
             </Modal>
-            <TouchableHighlight
-                style={styles.openButton}
-                onPress={() => {
-                    setModalVisible(true);
-                }}
-            >
-                <Text style={styles.textStyle}>Show Modal</Text>
-            </TouchableHighlight>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    okButton: {
+        backgroundColor: 'green',
+        borderRadius: 50,
+        padding: 10,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        margin: 20,
+        alignSelf: "flex-end"
+    },
     centeredView: {
         flex: 1,
         justifyContent: "center",
@@ -71,6 +86,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5
+    },
+    inputView: {
+        backgroundColor: 'pink',
+        flexDirection: "row",
+        justifyContent: "center",
+        padding: 10,
     },
     openButton: {
         backgroundColor: "#F194FF",

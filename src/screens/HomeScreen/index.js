@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, StyleSheet, Text, Alert, Modal, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Text, Alert, Modal, TouchableHighlight, Pressable } from 'react-native';
 import strings from '../../constants/strings'
 
 import CommonButton from '../../components/CommonButton';
@@ -8,13 +8,13 @@ import EnterQtdeConsumidaModal from '../../components/EnterQtdeConsumidaModal';
 
 const HomeScreen = (props) => {
     const [bebeuAgua, estadoBebeuAgua] = useState(false);
-    const [volumeConsumido, setVolumeConsumido] = useState(0);
     const [numCopos, setNumCopos] = useState(0);
     const [qtdeConsumida, setQtdeConsumida] = useState(0);
 
-    const setConsumo = () => {
-        estadoBebeuAgua(true);
-        //Alert.alert("Clique Efetuado");
+    const inserirConsumo = (volumeConsumido) => {
+        setNumCopos(numCopos + 1);
+        setQtdeConsumida(qtdeConsumida + volumeConsumido);
+        estadoBebeuAgua(false);
     }
 
     return (
@@ -25,6 +25,7 @@ const HomeScreen = (props) => {
             <View style={styles.showText}>
                 <Text style={styles.sectionTitle}>{strings.COPOS_BEBIDOS}{numCopos}</Text>
                 <Text style={styles.sectionTitle}>{strings.QTDE_CONSUMIDA}{qtdeConsumida}</Text>
+                <Text style={styles.sectionTitle}>{strings.QTDE_CONSUMIDA}{bebeuAgua.toString()}</Text>
             </View>
             {
                 bebeuAgua && (
@@ -40,13 +41,12 @@ const HomeScreen = (props) => {
             }
             <View style={styles.positionBtn}>
                 <CommonButton title={strings.DRINK_BTN} style={styles.drinkButton}
-                    onPress={setConsumo}
+                    onPress={() => {estadoBebeuAgua(true);Alert.alert('Click')}}
                     disabled={bebeuAgua} />
                 {/* como desabilitar o btn? */}
             </View>
 
-            {/* <EnterQtdeConsumidaModal show={bebeuAgua}></EnterQtdeConsumidaModal> */}
-            <EnterQtdeConsumidaModal></EnterQtdeConsumidaModal>
+            <EnterQtdeConsumidaModal show={bebeuAgua} onInput={inserirConsumo}></EnterQtdeConsumidaModal>
         
         </SafeAreaView>
     );
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
         margin: 20,
         alignSelf: "flex-end"
     }
-
 });
 
 export default HomeScreen;
