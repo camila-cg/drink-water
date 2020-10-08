@@ -25,23 +25,12 @@ const HomeScreen = (props) => {
             <View style={styles.showText}>
                 <Text style={styles.sectionTitle}>{strings.COPOS_BEBIDOS}{numCopos}</Text>
                 <Text style={styles.sectionTitle}>{strings.QTDE_CONSUMIDA}{qtdeConsumida}</Text>
-                <Text style={styles.sectionTitle}>{strings.QTDE_CONSUMIDA}{bebeuAgua.toString()}</Text>
+                <Text style={styles.sectionTitle}>estadoBebeuAgua: {bebeuAgua.toString()}</Text>
             </View>
-            {
-                bebeuAgua && (
-                    <View style={styles.inputView}>
-                        <MyTextInput onChange={(text) => setVolumeConsumido(parseInt(text))}></MyTextInput>
-                        <CommonButton title={strings.OK} style={styles.okButton} onPress={() => {
-                            setNumCopos(numCopos + 1);
-                            setQtdeConsumida(qtdeConsumida + volumeConsumido);
-                            estadoBebeuAgua(false);
-                        }}
-                        />
-                    </View>)
-            }
+
             <View style={styles.positionBtn}>
                 <CommonButton title={strings.DRINK_BTN} style={styles.drinkButton}
-                    onPress={() => {estadoBebeuAgua(true);Alert.alert('Click')}}
+                    onPress={() => {estadoBebeuAgua(true)}}
                     disabled={bebeuAgua} />
                 {/* como desabilitar o btn? */}
             </View>
