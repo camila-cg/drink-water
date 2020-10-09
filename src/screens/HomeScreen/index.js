@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         margin: 2,
-        backgroundColor: 'lightgray',
+        backgroundColor: 'aliceblue',
         flexDirection: "column"
     },
     header: {

@@ -16,7 +16,7 @@ export default CommonButton;
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 15,
+        fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'white'
