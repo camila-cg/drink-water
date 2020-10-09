@@ -10,6 +10,7 @@ import {
 
 import strings from "../../constants/strings";
 import CommonButton from "../CommonButton";
+import SimpleButton from "../SimpleButton";
 import MyTextInput from "../MyTextInput";
 
 const EnterQtdeConsumidaModal = (props) => {
@@ -21,6 +22,7 @@ const EnterQtdeConsumidaModal = (props) => {
 
     return (
         <View style={styles.centeredView}>
+            {/* POR QUE O ALERT DE FECHAMENTO N APARECE? */}
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -31,23 +33,14 @@ const EnterQtdeConsumidaModal = (props) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>MODAL</Text>
+                        <Text style={styles.textHeaderModal}>{strings.TXT_INPUT_QTDE}</Text>
 
                         <View style={styles.inputView}>
+                            {/* POR QUE O TAMANHO DO INPUT VARIA DE ACORDO COM A ENTRADA? */}
                             <MyTextInput onChange={(text) => setVolumeConsumido(parseInt(text))}></MyTextInput>
-                            <CommonButton title={strings.OK} style={styles.okButton} onPress={setConsumo}
-                            />
+                            <Text style={styles.modalText}>{strings.UNIDADE_ML}</Text>
                         </View>
-
-                        {/* <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                            onPress={() => {
-                                // props.show = false;
-                                setModalVisible(!modalVisible);
-                            }}
-                        >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </TouchableHighlight> */}
+                        <SimpleButton title={strings.OK} onPress={setConsumo}/>
                     </View>
                 </View>
             </Modal>
@@ -56,16 +49,6 @@ const EnterQtdeConsumidaModal = (props) => {
 };
 
 const styles = StyleSheet.create({
-    okButton: {
-        backgroundColor: 'green',
-        borderRadius: 50,
-        padding: 10,
-        width: 60,
-        height: 60,
-        justifyContent: 'center',
-        margin: 20,
-        alignSelf: "flex-end"
-    },
     centeredView: {
         flex: 1,
         justifyContent: "center",
@@ -88,25 +71,22 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     inputView: {
-        backgroundColor: 'pink',
+        // backgroundColor: 'pink',
         flexDirection: "row",
-        justifyContent: "center",
         padding: 10,
     },
-    openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-    },
-    textStyle: {
-        color: "white",
+    textHeaderModal: {
+        color: "gray",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
+        paddingBottom: 15,
+        fontSize: 16
     },
     modalText: {
-        marginBottom: 15,
-        textAlign: "center"
+        textAlign: "center",
+        alignSelf: "flex-end",
+        fontSize: 20,
+        padding: 10
     }
 });
 

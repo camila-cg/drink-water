@@ -2,6 +2,6 @@ export default {
     HEADER: "Beba Água!",
     DRINK_BTN: "Beber",
     OK: "OK",
-    COPOS_BEBIDOS: "Copos bebidos: ",
-    QTDE_CONSUMIDA: "Qtde consumida (ml): "
+    TXT_INPUT_QTDE: "Insira a quantidade consumida",
+    UNIDADE_ML: "ml"
 }

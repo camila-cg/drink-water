@@ -82,6 +82,11 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+// TODO: VERIFICAR PQ ISSO E NECESSARIO
+// https://github.com/oblador/react-native-vector-icons/issues/661
+
 
 /**
  * Set this to true to create two separate APKs instead of one:

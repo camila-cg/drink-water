@@ -8,7 +8,6 @@ const CommonButton = (props) => {
         </Pressable>
 
     );
-
 }
 
 export default CommonButton;

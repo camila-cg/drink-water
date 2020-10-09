@@ -14,7 +14,8 @@ export default MyTextInput;
 const styles = StyleSheet.create({
     input: {
         backgroundColor: "powderblue",
-        flex: 1,
-        fontSize: 20
+        fontSize: 20,
+        borderBottomColor: "blue",
+        borderBottomWidth: 2
     }
 });

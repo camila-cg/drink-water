@@ -3,8 +3,9 @@ import { SafeAreaView, View, StyleSheet, Text, Alert, Modal, TouchableHighlight,
 import strings from '../../constants/strings'
 
 import CommonButton from '../../components/CommonButton';
-import MyTextInput from '../../components/MyTextInput';
 import EnterQtdeConsumidaModal from '../../components/EnterQtdeConsumidaModal';
+
+import Icon from 'react-native-vector-icons/Entypo';
 
 const HomeScreen = (props) => {
     const [bebeuAgua, estadoBebeuAgua] = useState(false);
@@ -18,14 +19,16 @@ const HomeScreen = (props) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>            
             <View style={styles.header}>
                 <Text style={styles.textHeader}>{strings.HEADER}</Text>
             </View>
-            <View style={styles.showText}>
-                <Text style={styles.sectionTitle}>{strings.COPOS_BEBIDOS}{numCopos}</Text>
-                <Text style={styles.sectionTitle}>{strings.QTDE_CONSUMIDA}{qtdeConsumida}</Text>
-                <Text style={styles.sectionTitle}>estadoBebeuAgua: {bebeuAgua.toString()}</Text>
+
+            <View style={styles.banner}>
+                <Icon name="cup" size={60} color="dodgerblue" />
+                <Text style={styles.sectionTitle}>{numCopos}</Text>
+                <Icon name="drop" size={60} color="dodgerblue" />
+                <Text style={styles.sectionTitle}>{qtdeConsumida}{strings.UNIDADE_ML}</Text>
             </View>
 
             <View style={styles.positionBtn}>
@@ -35,6 +38,7 @@ const HomeScreen = (props) => {
                 {/* como desabilitar o btn? */}
             </View>
 
+            {/* PQ A VIEW DO BTN FICA COM SOMBREAMENTO QUANDO O TECLADO É ABERTO? */}
             <EnterQtdeConsumidaModal show={bebeuAgua} onInput={inserirConsumo}></EnterQtdeConsumidaModal>
         
         </SafeAreaView>
@@ -43,9 +47,10 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    showText: {
-        paddingHorizontal: 10,
-        alignItems: "baseline"
+    banner:{
+        flexDirection: "row",
+        alignItems: "flex-end",
+        justifyContent: "space-evenly"
     },
     inputView: {
         backgroundColor: 'pink',
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
         right: 0
     },
     drinkButton: {
-        backgroundColor: 'skyblue',
+        backgroundColor: 'steelblue',
         borderRadius: 40,
         padding: 8,
         width: 80,
